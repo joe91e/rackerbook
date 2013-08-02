@@ -1,10 +1,12 @@
 from django.conf.urls import patterns, include, url
+from socialapp.views import current_datetime
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^home/$', current_datetime),
     # Examples:
     # url(r'^$', 'rackerbooksite.views.home', name='home'),
     # url(r'^rackerbooksite/', include('rackerbooksite.foo.urls')),
