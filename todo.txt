@@ -11,3 +11,8 @@ display my groups, my skill level, (if not the user himself, then add challenge 
 
 4. Invite capability
 <--- invite is for later purposes
+
+5. Calendar Stuff - this will use group event discussion posts
+as well as individual user-to-user invitations,
+so that each user can have his own calendar 
+filled with information relevant to him/her.
