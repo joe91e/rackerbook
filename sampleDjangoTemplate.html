@@ -1,0 +1,148 @@
+{
+Error: Parse error on line 1:
+{% extends "base.html
+-^
+Expecting 'STRING', '}'
+% extends "base.html" %}
+
+{% block title %}Main Page{% endblock %}
+
+{% block body %}
+
+<script type="text/javascript">
+        $(document).ready(function(){
+                var rowCnt = 0;
+                $('#viewMainCrises').children().each(function(){
+                        rowCnt++;
+                })
+                var numRows = rowCnt;
+
+                var accordionHeight = 300;
+                if(numRows > 1)
+                        accordionHeight += (numRows - 1) * 50;
+
+
+                $('#viewMainCrises').gridAccordion({width: 300, height:accordionHeight, columns: 1, distance: 2, slideshowDelay:1000, alignType:'leftTop', closedPanelWidth:300,
+closedPanelHeight:75, openedPanelWidth:300, openedPanelHeight:225, captionTop: 5, captionLeft: 5, captionWidth: 290, captionHeight: 75});
+
+                $('#viewMainOrganizations').gridAccordion({width:300, height:accordionHeight, columns: 1, distance: 2, slideshowDelay:1000, alignType:'leftTop', closedPanelWidth:300,
+closedPanelHeight:75, openedPanelWidth:300, openedPanelHeight:225, captionTop: 5, captionLeft: 5, captionWidth: 290, captionHeight: 75});
+
+                $('#viewMainPeople').gridAccordion({width:300, height:accordionHeight, columns: 1, distance: 2, slideshowDelay:1000, alignType:'leftTop', closedPanelWidth:300,
+closedPanelHeight:75, openedPanelWidth:300, openedPanelHeight:225, captionTop: 5, captionLeft: 5, captionWidth: 290, captionHeight: 75});
+
+                var tdWidth = $('#mainPageTable').find('td').width();
+                var margin = (tdWidth - 300)/2;
+                $('#mainPageTable').find('td').each(function(){
+                        $(this).find('.accordion').css('margin-left', margin);
+                        $(this).find('.viewBtn').css('margin-left', margin);
+                })
+
+                var quotes = new Array();
+                quotes[0] = "\"In prehistoric times, mankind often had only two choices in crisis situations: fight or flee. In modern times, humor offers us a third alternative; fight, flee - or laugh.\" - Robert Orben";
+                quotes[1] = "\"Try to relax and enjoy the crisis.\" - Ashleigh Brilliant";
+                quotes[2] = "\"The crisis of today is the joke of tomorrow.\" - H. G. Wells";
+                quotes[3] = "\"Every little thing counts in a crisis.\" - Jawaharlal Nehru";
+                quotes[4] = "\"Usually, towns act when there's a crisis. And sometimes good planning decisions can arise - there's that hope here.\" - Eric Alexander";
+                quotes[5] = "\"Character is not made in a crisis it is only exhibited.\" - Robert Freeman";
+                quotes[6] = "\"When you have a crisis, the crisis itself becomes one of your biggest asset if that crisis is bad enough. Everyone get very modest and humble and listens. If you need do rough things, you do rough things.\" - Carl-Henric Svanberg";
+		quotes[7] = "\"You can't relate to a superhero, to a superman, but you can identify with a real man who in times of crisis draws forth some extraordinary quality from within himself and triumphs but only after a struggle.\" - Timothy Dalton";
+		quotes[8] = "\"There can't be a crisis next week. My schedule is already full.\" - Henry Kissinger";
+		quotes[9] = "\"Faced with crisis, the man of character falls back on himself. He imposes his own stamp of action, takes responsibility for it, makes it his own.\" - Charles de Gaulle";
+
+                $('#quote').hide();
+                $('#quote').text(quotes[0]);
+                $('#quote').slideDown('slow');
+
+                var curQuote = 1;
+                window.setInterval(function(){
+                        if(curQuote >= quotes.length)
+                                curQuote = 0;
+                        $('#quote').hide();
+                        $('#quote').text(quotes[curQuote]);
+                        $('#quote').slideDown('slow');
+                        curQuote++;
+                }, 7000);
+        });
+</script>
+
+<div class="container" style="background-color: #FFFFFF; width: 100%;">
+    <div style="height: 100px; background-color: #EEEEEE; margin-top: 25px; margin-bottom: 25px; padding: 5px; text-align: center; border-radius: 20px;">
+        <p style="font-size:32px; margin-top: 15px; font-style: normal;">World Crises</p>
+	<p id="quote"></p>
+    </div>
+</div>
+
+<div>
+<table id="mainPageTable" width="100%">
+        <tbody width="100%">
+        <tr width="100%">
+        <!-- crisis -->
+        <td width="33%" style="background:url(../resources/img/wild_oliva.png) repeat;">
+        <div class="span4" style="text-align: center;">
+                  <div id="viewMainCrises" class="accordion viewMain">
+                 {% for cr in crs %}
+                        <div>
+                                <img src="{{cr.imagesLinks.0.url|default:"../resources/img/crisis-stub.png"}}"/>
+                                         {% for crisis in crises %}
+                                         {% ifequal crisis.name cr.name %}
+                                        <div class="caption"><a class="btn btn-inverse" href="{{ crisis.url }}">View {{ cr.name }}</a></div>
+                                        {% endifequal %}
+                                        {% endfor %}
+                        </div>
+                 {% endfor %}
+                 </div>
+                 <div class="viewBtn" style="margin-bottom: 50px;">
+                 <a class="btn btn-primary" href="/crises">View Crises</a>
+                 </div>
+        </div>
+        </td>
+
+        <!-- organizations -->
+        <td width="33%" style="background:url(../resources/img/wild_oliva.png) repeat;">
+        <div class="span4" style="text-align: center;">
+                  <div id="viewMainOrganizations" class="accordion viewMain">
+                 {% for o in orgs %}
+                        <div>
+                                <img src="{{o.imagesLinks.0.url|default:"../resources/img/org-stub.png"}}"/>
+                                         {% for org in organizations %}
+                                         {% ifequal org.name o.name %}
+                                        <div class="caption"><a class="btn btn-inverse" href="{{ org.url }}">View {{ o.name }}</a></div>
+                                        {% endifequal %}
+                                        {% endfor %}
+                        </div>
+                 {% endfor %}
+                 </div>
+                 <div class="viewBtn" style="margin-bottom: 50px;">
+                 <a class="btn btn-danger" href="/organizations">View Organizations</a>
+                 </div>
+        </div>
+        </td>
+
+        <!-- people -->
+        <td width="33%" style="background:url(../resources/img/wild_oliva.png) repeat;">
+        <div class="span4" style="text-align: center; align: center;">
+                          <div id="viewMainPeople" class="accordion viewMain">
+                         {% for p in ppl %}
+                                        <div>
+											<img src="{{p.imagesLinks.0.url|default:"../resources/img/person-stub.png"}}"/>
+															 {% for person in people %}
+															 {% ifequal person.name p.name %}
+															<div class="caption"><a class="btn btn-inverse" href="{{ person.url }}">View {{ p.name }}</a></div>
+															{% endifequal %}
+															{% endfor %}
+                                        </div>
+                         {% endfor %}
+                         </div>
+                        <div class="viewBtn" style="margin-bottom: 50px;">
+                                <a class="btn btn-warning" href="/people">View People</a>
+                        </div>
+        </div>
+        </td>
+
+        </tr>
+        </tbody>
+</table>
+</div>
+
+{% endblock %}
