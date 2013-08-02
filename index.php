@@ -92,7 +92,7 @@
           <h1>
 		  <small>
 		    Rackerbook makes it easy to organize events/activities with 
-			other rackers.
+			other Rackers.
 		  </small>
 		  </h1>
         </div>
@@ -154,7 +154,7 @@
 							<span class="help-block">Where:</span>
 							<input class="xlarge" value="Austin Tennis Center" type="text" disabled>					
 						</div>						
-<pre>hello rackers I'd like to play tennis this friday. 
+<pre>hello Rackers I'd like to play tennis this friday. 
 Anyone care to join?
 </pre>
 						
@@ -196,7 +196,7 @@ Anyone care to join?
 									</div>
 									<div class="span5">
 										<a href="#racker2">racker2</a>
-										If we can get enough rackers to join, we could match players appropriately.
+										If we can get enough Rackers to join, we could match players appropriately.
 										<br/><span class="timestamp">11:07 PM 7/30/2013</span>
 									</div>
 								</div>
