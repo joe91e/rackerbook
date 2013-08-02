@@ -14,7 +14,7 @@ class Groups(models.Model):
 class Users(models.Model):
     user_id = models.IntegerField(primary_key=True)
     user_name = models.CharField(max_length=50)
-    user_password = models.Charfield()
+    user_password = models.CharField(max_length=50)
     location = models.ForeignKey(Location)
     user_desc = models.TextField(blank=True)
 
@@ -41,7 +41,7 @@ class Message(models.Model):
     message_id = models.IntegerField(primary_key=True)
     subject = models.CharField(max_length=50)
     suggested_time = models.DateTimeField()
-    location = models.ForeignKey()
+    location = models.ForeignKey(Location)
     description = models.TextField()
 
 class Events(models.Model):

@@ -10,3 +10,7 @@ def current_datetime(request):
     html = t.render(Context({'current_date': now}))
     return HttpResponse(html)
 
+def landing(request):
+    t = get_template('index.html')
+    html = t.render(Context({}))
+    return HttpResponse(html)
