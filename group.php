@@ -11,7 +11,9 @@
 	<script src="fbootstrapp/js/bootstrap-tabs.js"></script>
 	<script src="fbootstrapp/js/bootstrap-twipsy.js"></script>
 	<script src="fbootstrapp/js/bootstrap-datepicker.js" type="text/javascript" language="javascript"></script>
-	<link href="fbootstrapp/css/datepicker.css" type="text/css" rel="stylesheet"></link>		
+	<script src="fbootstrapp/js/bootstrap-timepicker.min.js" type="text/javascript" language="javascript"></script>
+	<link href="fbootstrapp/css/datepicker.css" type="text/css" rel="stylesheet"></link>	
+	<link href="fbootstrapp/css/bootstrap-timepicker.css" type="text/css" rel="stylesheet"></link>
     <link href="fbootstrapp/css/bootstrap.css" rel="stylesheet">
 	<link href="fbootstrapp/css/bootstrap-glyphicons.css" rel="stylesheet">	
     <style type="text/css">
@@ -128,7 +130,7 @@
 			This group is for any rackers with interest in playing or learning tennis.
 			<hr/>
 			<h3>Location</h3>
-			Austin, TX
+			Austin, TX			
 			<hr/>
 			<h3>Members</h3>
 			<table class="zebra-striped bordered-table members-list"><!-- table consisting of group members-->
@@ -237,39 +239,29 @@
 				   <tr>
 					  <td>
 						  <div data-date-format="mm/dd/yyyy" id="dp-start" data-date="08/01/2013" class="input-append date">
-							<input id="requestDate" type="text" readonly="" value="08/01/2013" size="9" class="small" style="height: 22px;">
-							<span class="add-on" style="height: 22px; cursor: pointer;">
+							<input id="requestDate" type="text" readonly="" value="08/01/2013" size="9" class="small" 
+							style="height: 22px; padding: 0px;">
+							<span class="add-on" style="height: 22px; cursor: pointer; padding: 0px;">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
 						  </div>
-						  <select style="width: 70px; height: 32px;">
-<option>12:00AM</option><option>1:00AM</option><option>2:00AM</option>
-<option>3:00AM</option><option>4:00AM</option><option>5:00AM</option>
-<option>6:00AM</option><option>7:00AM</option><option>8:00AM</option>
-<option>9:00AM</option><option>10:00AM</option><option>11:00AM</option>
-<option>12:00PM</option><option>1:00PM</option><option>2:00PM</option>
-<option>3:00PM</option><option>4:00PM</option><option>5:00PM</option>
-<option>6:00PM</option><option>7:00PM</option><option>8:00PM</option>
-<option>9:00PM</option><option>10:00PM</option><option>11:00PM</option>
-						  </select>	
+			<div class="input-append bootstrap-timepicker">
+				<input id="timepicker-start" type="text" style="width: 45px;">
+				<span class="add-on"><span class="glyphicon glyphicon-time"></span></span>
+			</div>
 					  </td>
 					  <td>
 						  <div data-date-format="mm/dd/yyyy" id="dp-end" data-date="08/01/2013" class="input-append date">
-							<input id="requestDate" type="text" readonly="" value="08/01/2013" size="9" class="small" style="height: 22px;">
-							<span class="add-on" style="height: 22px; cursor: pointer">
+							<input id="requestDate" type="text" readonly="" value="08/01/2013" size="9" class="small" 
+							style="height: 22px; padding: 0px;">
+							<span class="add-on" style="height: 22px; cursor: pointer; padding: 0px;">
 								<span class="glyphicon glyphicon-calendar"></span>
 							</span>
 						  </div>
-						  <select style="width: 70px; height: 32px;">
-<option>12:00AM</option><option>1:00AM</option><option>2:00AM</option>
-<option>3:00AM</option><option>4:00AM</option><option>5:00AM</option>
-<option>6:00AM</option><option>7:00AM</option><option>8:00AM</option>
-<option>9:00AM</option><option>10:00AM</option><option>11:00AM</option>
-<option>12:00PM</option><option>1:00PM</option><option>2:00PM</option>
-<option>3:00PM</option><option>4:00PM</option><option>5:00PM</option>
-<option>6:00PM</option><option>7:00PM</option><option>8:00PM</option>
-<option>9:00PM</option><option>10:00PM</option><option>11:00PM</option>
-						  </select>	
+			<div class="input-append bootstrap-timepicker">
+				<input id="timepicker-end" type="text" style="width: 45px;">
+				<span class="add-on"><span class="glyphicon glyphicon-time"></span></span>
+			</div>
 					  </td>
 				  </tr>
 			  </tbody>
@@ -512,6 +504,8 @@ Anyone care to join?
   
 <script language="javascript">
 $(document).ready(function(){
+	$('#timepicker-start').timepicker();
+	$('#timepicker-end').timepicker();
 	setColumnHeights();
 	$('.racker-dropdown').each(function(){
 		$(this).dropdown();
