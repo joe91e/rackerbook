@@ -1,0 +1,13 @@
+1. user profile - 
+PROFILE IMAGE.
+
+display my groups, my skill level, (if not the user himself, then add challenge button per activity)
+
+
+2. inbox - list of challenge/invitation requests, post updates
+<--- inbox is for later purposes
+
+3.search capability plug-in (for demo purposes)
+
+4. Invite capability
+<--- invite is for later purposes
