@@ -100,6 +100,7 @@
 .bootstrap-timepicker-widget table td input {
   width: 25px;
   margin: 0;
+  margin-left: 8px;
   text-align: center;
 }
 .bootstrap-timepicker-widget .modal-content {
