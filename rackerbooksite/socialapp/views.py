@@ -14,3 +14,8 @@ def landing(request):
     t = get_template('index.html')
     html = t.render(Context({}))
     return HttpResponse(html)
+	
+def about(request):
+	t = get_template('about.html')
+	html = t.render(Context({}))
+	return HttpResponse(html)

@@ -7,7 +7,8 @@ from socialapp.views import landing
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^home/$', landing),
+   # url(r'^home/$', landing),
+	url(r'', landing),
     #url(r'^static/$', static),
     # Examples:
     # url(r'^$', 'rackerbooksite.views.home', name='home'),
