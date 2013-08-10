@@ -13,6 +13,7 @@
 	<script src="{% static "fbootstrapp/js/bootstrap-twipsy.js" %}"></script>
     <link href="{% static "fbootstrapp/css/bootstrap.css" %}" rel="stylesheet"/>
 	<link href="{% static "fbootstrapp/css/bootstrap-glyphicons.css" %}" rel="stylesheet" />	
+	
     <style type="text/css">
       /* Override some defaults */
       html, body {
@@ -53,7 +54,7 @@
       <div class="fill">
         <div class="container">
 		  <a class="brand" style="padding: 0px; margin-right: 25px; margin-left: -5px;">
-			<img src="{% static "images/rackspace-logo.png" %}" />
+			<img src="images/rackspace-logo.png" />
 		  </a>
           <a class="brand" href="http://192.237.162.69/">rackerbook</a>
           <ul class="nav">
@@ -61,7 +62,7 @@
 				<span class="glyphicon glyphicon-home"></span></a>
 			</li>
             <li class="active">
-				<a href="about">
+				<a href="http://192.237.162.69/about">
 					<span class="glyphicon glyphicon-question-sign"></span>
 				</a>
 			</li>
@@ -109,34 +110,70 @@
 					</ul>
 				<center>
 					<div>
-					<img style="border: 1px solid #C0C0C0; padding: 5px; border-radius: 5px;" 
-					src="{% static "images/about1.png" %}"/>
+					<img style="border: 1px solid #C0C0C0; padding: 5px; border-radius: 5px;" src="{% static "images/about1.png" %}" />
 					</div>	
 				</center>
 				</div>
 			</div>
 			<div class="span9 rackerbook-column" style="min-height: 500px;">
-				<h3>Admin Contact/Credits</h3>
 				<div class="row">
-					<ul>
-						<li><h5>Kishore Alavalapati</h5></li>
-						<li><h5>Ed Cranford</h5></li>
-						<li><h5>Amy Dang</h5></li>						
-						<li><h5>Joseph Ellyson</h5></li>
-						<li><h5>Anne Gentle</h5></li>
-						<li><h5>DJ Johnstone</h5></li>
-					</ul>
-				</div>
-				<center>
-					<div>
-						<img style="border: 1px solid #C0C0C0; padding: 5px; border-radius: 5px;" src="{% static "images/about2.png" %}" />
+					<div class="span1">
 					</div>
-				</center>				
+					<div class="span10">				
+					<table id="signUpForm" class="signUpForm bordered-table">
+					<thead>
+						<th colspan="2"><h3>Sign Up</h3></th>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" style="width: 96%;" placeholder="First Name" /></td>
+							<td><input type="text" style="width: 96%;" placeholder="Last Name" /></td>
+						</tr>
+						<tr>
+							<td colspan=2><input type="text" placeholder="Your Rackspace Email" style="width: 98%;" /></td>
+						</tr>
+						<tr>
+							<td colspan=2><input type="text" placeholder="Re-enter Email" style="width: 98%;" /></td>
+						</tr>
+						<!--
+						<tr>
+							<td colspan=2><input type="text" placeholder="New Password" style="width: 98%;" /></td>
+						</tr>
+						<tr>
+							<td colspan=2><input type="text" placeholder="Confirm Password" style="width: 98%;" /></td>
+						</tr>-->
+						<tr>
+							<td colspan=2>
+								<div class="input-prepend">
+								<span class="add-on">Location</span>
+								&nbsp;
+								<select style="height: 24px;">
+									<option value="Austin, TX">Austin, TX</option>
+									<option value="San Antonio, TX">San Antonio, TX</option>
+									<option value="Hayes, UK">Hayes, UK</option>
+									<option value="San Francisco, CA">San Francisco, CA</option>
+									<option value="Blacksburg, VA">Blacksburg, VA</option>
+									<option value="Sydney, AUS">Sydney, AUS</option>
+									<option value="Hong Kong">Hong Kong</option>
+								</select>
+								</div>
+							</td>
+						</tr>						
+						<tr>
+							<td colspan=2><h3>&nbsp;<input type="radio" />&nbsp;Male&nbsp;&nbsp;&nbsp;<input type="radio" />&nbsp;Female</h3></td>
+						</tr>
+						<tr id="signUpRow">
+							<td colspan=2 style="text-align: center;"><a class="btn danger">Sign Up</a></td>
+						</tr>
+					<tbody>
+					</table>
+					</div>
+				</div>			
 			</div>
 		</div>
       </div><!-- CONTENT: THIS IS WHERE THE VIEWS FOR EACH PAGE WILL BE DIFFERENT-->
       <footer>
-        <center>		
+		<center>
 			<img src="{% static "images/rackerpowered.png" %}" class="rackerpowered"/>
 		</center>
       </footer>

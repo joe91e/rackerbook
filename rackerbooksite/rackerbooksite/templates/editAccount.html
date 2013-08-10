@@ -12,7 +12,9 @@
 	<script src="{% static "fbootstrapp/js/bootstrap-tabs.js" %}"></script>
 	<script src="{% static "fbootstrapp/js/bootstrap-twipsy.js" %}"></script>
     <link href="{% static "fbootstrapp/css/bootstrap.css" %}" rel="stylesheet"/>
-	<link href="{% static "fbootstrapp/css/bootstrap-glyphicons.css" %}" rel="stylesheet" />	
+	<link href="{% static "fbootstrapp/css/bootstrap-glyphicons.css" %}" rel="stylesheet" />	  
+	<script src="{% static "fbootstrapp/js/bootstrap-datepicker.js" %}" type="text/javascript" language="javascript"></script>
+	<link href="{% static "fbootstrapp/css/datepicker.css" %}" type="text/css" rel="stylesheet"></link>	
     <style type="text/css">
       /* Override some defaults */
       html, body {
@@ -57,11 +59,11 @@
 		  </a>
           <a class="brand" href="http://192.237.162.69/">rackerbook</a>
           <ul class="nav">
-            <li class=""><a href="http://192.237.162.69/">
+            <li class="active"><a href="http://192.237.162.69/">
 				<span class="glyphicon glyphicon-home"></span></a>
 			</li>
-            <li class="active">
-				<a href="about">
+            <li>
+				<a href="http://192.237.162.69/about">
 					<span class="glyphicon glyphicon-question-sign"></span>
 				</a>
 			</li>
@@ -76,12 +78,34 @@
 				</div>
 			</li>
           </ul>
-          <form action="loggedIn" class="pull-right">
-            <input class="input-small" type="text" placeholder="Email">
-            <input class="input-small" type="password" placeholder="Password">
-            <a class="btn inverse" href="http://192.237.162.69/loggedIn">Sign in</a>
-			<a class="btn" href="http://192.237.162.69/signup" style="color: #000;">Sign Up</a>
-          </form>
+		  <ul class="nav" id="userMenus">
+            <li class=""><a href="http://192.237.162.69/profile">
+				<span class="glyphicon glyphicon-user"></span></a>
+			</li>		  
+            <li class="dropdown" data-dropdown="dropdown">
+				<a id="notification-btn" class="racker-dropdown menu twipsy-below" href="#" rel="twipsy" data-original-title="You have 2 notifications">
+				<span class="glyphicon glyphicon-bell"></span>
+				<span id="notification-count">2</span>
+				</a>
+				<ul class="menu-dropdown">
+					<li><a href="#">Joe Racker Invited you to tennis!</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Jane Racker challenged you to foosball.</a></li>
+					<li class="divider"></li>
+					<li><center><a href="#">My Inbox</a></center></li>
+				</ul>
+			</li>		  
+            <li class="dropdown" data-dropdown="dropdown">
+				<a href="#" id="settingsDropdown" class="racker-dropdown menu">
+				<span class="glyphicon glyphicon-cog"></span>
+				</a>
+				<ul class="menu-dropdown">
+					<li><a href="http://192.237.162.69/editAccount">Edit Account</a></li>
+					<li class="divider"></li>
+					<li><a href="http://192.237.162.69/">Logout</a></li>
+				</ul>
+			</li>			
+		  </ul>
         </div>
       </div>
     </div>
@@ -99,48 +123,78 @@
         </div>
 		<div class="row">
 			<div class="span9 rackerbook-column" style="border-right: 1px solid #e0e0e0; min-height: 500px;">
-				<h3>About</h3>
-				<div class="row">
-					<ul>
-						<li><h5>Create/join groups with other Rackers who share similar interests.</h5></li>
-						<li><h5>Plan and organize events/activities through rackerbook groups, and keep yourself
-						better updated.</h5></li>
-						<li><h5>Challenge/Invite other Rackers to events/activities, and meet and greet other Rackers.</h5></li>
-					</ul>
-				<center>
-					<div>
-					<img style="border: 1px solid #C0C0C0; padding: 5px; border-radius: 5px;" 
-					src="{% static "images/about1.png" %}"/>
-					</div>	
-				</center>
+				<h3>My Info</h3>
+				<div class="row">	
+					<center>
+					<table id="signUpForm" class="signUpForm bordered-table" style="width: 92%;">
+					<tbody>
+						<tr>
+							<td><input type="text" style="width: 96%;" placeholder="First Name" /></td>
+							<td><input type="text" style="width: 96%;" placeholder="Last Name" /></td>
+						</tr>
+						<tr>
+							<td colspan=2><input type="text" placeholder="Your Rackspace Email" style="width: 98%;" /></td>
+						</tr>
+						<tr>
+							<td colspan=2><input type="text" placeholder="Re-enter Email" style="width: 98%;" /></td>
+						</tr>
+						<!--
+						<tr>
+							<td colspan=2><input type="text" placeholder="New Password" style="width: 98%;" /></td>
+						</tr>
+						<tr>
+							<td colspan=2><input type="text" placeholder="Confirm Password" style="width: 98%;" /></td>
+						</tr>-->
+						<tr>
+							<td colspan=2>
+								<div class="input-prepend">
+								<span class="add-on">Location</span>
+								&nbsp;
+								<select style="height: 24px;">
+									<option value="Austin, TX">Austin, TX</option>
+									<option value="San Antonio, TX">San Antonio, TX</option>
+									<option value="Hayes, UK">Hayes, UK</option>
+									<option value="San Francisco, CA">San Francisco, CA</option>
+									<option value="Blacksburg, VA">Blacksburg, VA</option>
+									<option value="Sydney, AUS">Sydney, AUS</option>
+									<option value="Hong Kong">Hong Kong</option>
+								</select>
+								</div>
+							</td>
+						</tr>						
+						<tr>
+							<td colspan=2>
+								<div class="input-prepend">
+								<span class="add-on" style="">Phone #</span>
+								&nbsp;
+								<input type="text" style="width: 25px;" maxlength="3" />
+								<span class="glyphicon glyphicon-minus" style="font-size: 8px;"></span>
+								<input type="text" style="width: 25px;" maxlength="3" />
+								<span class="glyphicon glyphicon-minus" style="font-size: 8px;"></span>
+								<input type="text" style="width: 30px;" maxlength="4" />
+								</div>
+							</td>
+						</tr>	
+						<tr id="saveMyInfoRow">
+							<td colspan=2 style="text-align: center;"><a class="btn danger">Save</a></td>
+						</tr>
+					<tbody>
+					</table>
+					</center>
 				</div>
 			</div>
 			<div class="span9 rackerbook-column" style="min-height: 500px;">
-				<h3>Admin Contact/Credits</h3>
 				<div class="row">
-					<ul>
-						<li><h5>Kishore Alavalapati</h5></li>
-						<li><h5>Ed Cranford</h5></li>
-						<li><h5>Amy Dang</h5></li>						
-						<li><h5>Joseph Ellyson</h5></li>
-						<li><h5>Anne Gentle</h5></li>
-						<li><h5>DJ Johnstone</h5></li>
-					</ul>
-				</div>
-				<center>
-					<div>
-						<img style="border: 1px solid #C0C0C0; padding: 5px; border-radius: 5px;" src="{% static "images/about2.png" %}" />
-					</div>
-				</center>				
+				</div>			
 			</div>
-		</div>
+		</div>	  		
       </div><!-- CONTENT: THIS IS WHERE THE VIEWS FOR EACH PAGE WILL BE DIFFERENT-->
       <footer>
-        <center>		
+		<center>
 			<img src="{% static "images/rackerpowered.png" %}" class="rackerpowered"/>
 		</center>
       </footer>
-
+	  
     </div> <!-- /container --> 
   </body>
  <script language="javascript">

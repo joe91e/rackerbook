@@ -12,8 +12,7 @@
 	<script src="{% static "fbootstrapp/js/bootstrap-tabs.js" %}"></script>
 	<script src="{% static "fbootstrapp/js/bootstrap-twipsy.js" %}"></script>
     <link href="{% static "fbootstrapp/css/bootstrap.css" %}" rel="stylesheet"/>
-	<link href="{% static "fbootstrapp/css/bootstrap-glyphicons.css" %}" rel="stylesheet" />	
-	
+	<link href="{% static "fbootstrapp/css/bootstrap-glyphicons.css" %}" rel="stylesheet" />
     <style type="text/css">
       /* Override some defaults */
       html, body {
@@ -54,11 +53,11 @@
       <div class="fill">
         <div class="container">
 		  <a class="brand" style="padding: 0px; margin-right: 25px; margin-left: -5px;">
-			<img src="{%static "images/rackspace-logo.png" %}" />
+			<img src="images/rackspace-logo.png" />
 		  </a>
-          <a class="brand" href="http://192.237.162.69/">rackerbook</a>
+          <a class="brand" href="#">rackerbook</a>
           <ul class="nav">
-            <li class="active"><a href="http://192.237.162.69/">
+            <li class="active"><a href="#">
 				<span class="glyphicon glyphicon-home"></span></a>
 			</li>
             <li>
@@ -77,12 +76,34 @@
 				</div>
 			</li>
           </ul>
-          <form action="loggedIn" class="pull-right">
-            <input class="input-small" type="text" placeholder="Email">
-            <input class="input-small" type="password" placeholder="Password">
-            <a class="btn inverse" href="http://192.237.162.69/loggedIn">Sign in</a>
-			<a class="btn" href="http://192.237.162.69/signup" style="color: #000;">Sign Up</a>
-          </form>
+		  <ul class="nav" id="userMenus">
+            <li class=""><a href="http://192.237.162.69/profile">
+				<span class="glyphicon glyphicon-user"></span></a>
+			</li>		  
+            <li class="dropdown" data-dropdown="dropdown">
+				<a id="notification-btn" class="racker-dropdown menu twipsy-below" href="#" rel="twipsy" data-original-title="You have 2 notifications">
+				<span class="glyphicon glyphicon-bell"></span>
+				<span id="notification-count">2</span>
+				</a>
+				<ul class="menu-dropdown">
+					<li><a href="#">Joe Racker Invited you to tennis!</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Jane Racker challenged you to foosball.</a></li>
+					<li class="divider"></li>
+					<li><center><a href="#">My Inbox</a></center></li>
+				</ul>
+			</li>		  
+            <li class="dropdown" data-dropdown="dropdown">
+				<a href="#" id="settingsDropdown" class="racker-dropdown menu">
+				<span class="glyphicon glyphicon-cog"></span>
+				</a>
+				<ul class="menu-dropdown">
+					<li><a href="http://192.237.162.69/editAccount">Edit Account</a></li>
+					<li class="divider"></li>
+					<li><a href="http://192.237.162.69/">Logout</a></li>
+				</ul>
+			</li>			
+		  </ul>
         </div>
       </div>
     </div>
@@ -99,23 +120,30 @@
 		  </h1>
         </div>
 		<div class="row" style="min-height: 500px;">
-		  <div class="span9 rackerbook-column" style="border-right: 1px solid #e0e0e0; min-height: 500px;">
-			<h3>Event/Activity Groups<a class="btn small" href="#more-groups" style="margin-left: 5px;">More</a></h3>
+		  <div class="span3 rackerbook-column" style="border-right: 1px solid #e0e0e0; min-height: 500px;">
+			<h3>My Groups</h3>
 			<div class="row" style="padding: 10px;">
-				<div class="span4">
-					<ul class="unstyeld group-list">
+				<div class="span3">
+					<ul class="unstyled group-list">
 					<li><a href="http://192.237.162.69/group">Tennis</a></li>
 					<li><a href="#ping-pong">Ping pong</a></li>
 					<li><a href="#foosball">Foosball</a></li>
-					<li><a href="#bowling">Bowling</a></li>
-					<li><a href="#basketball">Basketball</a></li>
-					<li><a href="#football">Football</a></li>
-					<li><a href="#soccer">Soccer</a></li>
 					<li><a href="#baseball">Baseball</a></li>
+					<li><a href="#lunch-with-rackers">Lunch-with-rackers</a></li>			
 					</ul>
+					<a class="btn small" href="#more-groups" style="margin-left: 5px;">More</a>
 				</div>
-				<div class="span4">
-					<ul class="unstyeld group-list">
+			</div>
+			<br/>
+			<h3>All Groups</h3>
+			<div class="row" style="padding: 10px;">
+				<div class="span3">
+					<ul class="unstyled group-list">
+					<li><a href="http://192.237.162.69/group">Tennis</a></li>
+					<li><a href="#ping-pong">Ping pong</a></li>
+					<li><a href="#foosball">Foosball</a></li>
+					<li><a href="#baseball">Baseball</a></li>
+					<li><a href="#lunch-with-rackers">Lunch-with-rackers</a></li>	
 					<li><a href="#womenDeveloperMeetUps">Women Developer Meet-ups</a></li>
 					<li><a href="#lunch-with-rackers">Lunch-with-rackers</a></li>
 					<li><a href="#activity1">Activity1</a></li>
@@ -123,20 +151,32 @@
 					<li><a href="#activity3">Activity3</a></li>
 					<li><a href="#activity4">Activity4</a></li>
 					<li><a href="#activity5">Activity5</a></li>
-					<li><a href="#activity6">Activity6</a></li>
+					<li><a href="#activity6">Activity6</a></li>					
 					</ul>
+					<a class="btn small" href="#more-groups" style="margin-left: 5px;">More</a>					
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="span3" style=""> 
+				<a class="btn danger small" href="http://192.237.162.69/createGroup">
+					<span class="glyphicon glyphicon-plus-sign">
+					Create Group
+					</span>
+				</a>
 				</div>
 			</div>
 		  </div>
-		  <div class="span9 rackerbook-column" style="min-height: 500px;">
-			<h3>Recent Posts</h3>
+		  
+		  <div class="span8 rackerbook-column" style="min-height: 500px; border-right: 1px solid #E0E0E0; padding-right: 10px;"><!-- start of rackerbook-column -->
+			<h3>Recent Posts (My Groups)</h3>
 			<!-- post 1-->
 			<br/>			
 			<div class="row">
 				<div class="span2">
 					<span style="margin-left: 15px;" class="glyphicon glyphicon-user rackerbook-profile-pic"></span><!-- 50 x 50 -->
 				</div>
-				<div class="span7">
+				<div class="span6">
 					<!-- POST FROM-> TO -->
 					<a href="#joe.racker" class="racker-profile-link">Joe Racker</a>
 					&nbsp;
@@ -149,8 +189,10 @@
 						<div class="inline-input when-where">
 							<span class="help-block">When: (Central Standard Time)</span>
 							<input class="medium" value="8/3/2013 12:00PM" type="text" disabled>
+							<!--<input value="12:00PM" style="width: 45px;" type="text">-->
 							to
-							<input class="medium" value="8/3/2013 1:00PM" type="text" disabled>		
+							<input class="medium" value="8/3/2013 1:00PM" type="text" disabled>
+							<!--<input value="1:00PM" style="width: 45px;" type="text">-->					
 						</div>
 						<div class="inline-input when-where">
 							<span class="help-block">Where:</span>
@@ -159,7 +201,7 @@
 <pre>hello Rackers I'd like to play tennis this friday. 
 Anyone care to join?
 </pre>
-						
+						<a href="#join-event1">Join</a>&nbsp;&nbsp;<a href="#invite-event1">Invite</a>&nbsp;&nbsp;
 						<span class="timestamp">Posted on 11:00 PM 7/30/2013</span>
 						<br/><br/>
 						<ul class="breadcrumb racker-post">
@@ -179,7 +221,7 @@ Anyone care to join?
 									<div class="span1">
 										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
 									</div>
-									<div class="span5">
+									<div class="span4">
 										<a href="#racker1">racker1</a>
 										I've never played tennis before and would like to learn.
 										Can noobs join too?
@@ -196,7 +238,7 @@ Anyone care to join?
 									<div class="span1">
 										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
 									</div>
-									<div class="span5">
+									<div class="span4">
 										<a href="#racker2">racker2</a>
 										If we can get enough Rackers to join, we could match players appropriately.
 										<br/><span class="timestamp">11:07 PM 7/30/2013</span>
@@ -205,6 +247,130 @@ Anyone care to join?
 							</li>
 						</ul>
 						<!-- comment 2-->	
+						<!-- new comment to be added -->
+						<ul class="breadcrumb racker-post">
+							<li>
+								<div class="row">
+									<div class="span1">
+										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
+									</div>
+									<div class="span4">
+										<textarea class="new-post" id="post1" name="post1"></textarea>
+										<div style="margin-top: 5px;">
+											<center>
+											<a class="btn danger">Comment</a>
+											</center>
+										</div>									
+									</div>
+								</div>							
+							</li>
+						</ul>
+						<!-- new comment to be added -->
+					</div>
+				</div>
+			</div>
+			<!-- post 1-->
+								
+		  </div><!-- end of rackerbook-column -->
+		  
+		  <div class="span8 rackerbook-column" style="min-height: 500px;"><!-- start of rackerbook-column -->
+			<h3>Recent Posts (All)</h3>
+			<!-- post 1-->
+			<br/>			
+			<div class="row">
+				<div class="span2">
+					<span style="margin-left: 15px;" class="glyphicon glyphicon-user rackerbook-profile-pic"></span><!-- 50 x 50 -->
+				</div>
+				<div class="span6">
+					<!-- POST FROM-> TO -->
+					<a href="#joe.racker" class="racker-profile-link">Joe Racker</a>
+					&nbsp;
+					<span class="glyphicon glyphicon-play"></span>
+					&nbsp;
+					<a href="http://192.237.162.69/group" class="racker-group-link">Tennis</a>
+					<!-- POST FROM-> TO -->
+					<br/><br/>
+					<div class="conversation">
+						<div class="inline-input when-where">
+							<span class="help-block">When: (Central Standard Time)</span>
+							<input class="medium" value="8/3/2013 12:00PM" type="text" disabled>
+							<!--<input value="12:00PM" style="width: 45px;" type="text">-->
+							to
+							<input class="medium" value="8/3/2013 1:00PM" type="" disabled>
+							<!--<input value="1:00PM" style="width: 45px;" type="text">-->				
+						</div>
+						<div class="inline-input when-where">
+							<span class="help-block">Where:</span>
+							<input class="xlarge" value="Austin Tennis Center" type="text" disabled>					
+						</div>						
+<pre>hello Rackers I'd like to play tennis this friday. 
+Anyone care to join?
+</pre>
+						<a href="#join-event1">Join</a>&nbsp;&nbsp;<a href="#invite-event1">Invite</a>&nbsp;&nbsp;
+						<span class="timestamp">Posted on 11:00 PM 7/30/2013</span>
+						<br/><br/>
+						<ul class="breadcrumb racker-post">
+							<li>
+								<a href="#join-event1">
+									<span class="glyphicon glyphicon-ok"></span>
+								</a>
+								<a>
+									&nbsp;Jane Racker
+								</a>Joined this.
+							</li>
+						</ul>
+						<!-- comment 1-->
+						<ul class="breadcrumb racker-post">
+							<li>
+								<div class="row">
+									<div class="span1">
+										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
+									</div>
+									<div class="span4">
+										<a href="#racker1">racker1</a>
+										I've never played tennis before and would like to learn.
+										Can noobs join too?
+										<br/><span class="timestamp">11:05 PM 7/30/2013</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<!-- comment 1-->
+						<!-- comment 2-->
+						<ul class="breadcrumb racker-post">
+							<li>
+								<div class="row">
+									<div class="span1">
+										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
+									</div>
+									<div class="span4">
+										<a href="#racker2">racker2</a>
+										If we can get enough Rackers to join, we could match players appropriately.
+										<br/><span class="timestamp">11:07 PM 7/30/2013</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<!-- comment 2-->	
+						<!-- new comment to be added -->
+						<ul class="breadcrumb racker-post">
+							<li>
+								<div class="row">
+									<div class="span1">
+										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
+									</div>
+									<div class="span4">
+										<textarea class="new-post" id="post1" name="post1"></textarea>
+										<div style="margin-top: 5px;">
+											<center>
+											<a class="btn danger">Comment</a>
+											</center>
+										</div>									
+									</div>
+								</div>							
+							</li>
+						</ul>
+						<!-- new comment to be added -->
 					</div>
 				</div>
 			</div>
@@ -216,7 +382,7 @@ Anyone care to join?
 				<div class="span2">
 					<span style="margin-left: 15px;" class="glyphicon glyphicon-user rackerbook-profile-pic"></span><!-- 50 x 50 -->
 				</div>
-				<div class="span7">
+				<div class="span6">
 					<!-- POST FROM-> TO -->
 					<a href="#joe.racker" class="racker-profile-link">racker3</a>
 					&nbsp;
@@ -229,8 +395,10 @@ Anyone care to join?
 						<div class="inline-input when-where">
 							<span class="help-block">When: (Central Standard Time)</span>
 							<input class="medium" value="8/3/2013 12:00PM" type="text" disabled>
+							<!--<input value="12:00PM" style="width: 45px;" type="text">-->
 							to
-							<input class="medium" value="8/3/2013 1:00PM" type="text" disabled>			
+							<input class="medium" value="8/3/2013 1:00PM" type="text" disabled>
+							<!--<input value="1:00PM" style="width: 45px;" type="text">-->					
 						</div>
 						<div class="inline-input when-where">
 							<span class="help-block">Where:</span>
@@ -238,8 +406,28 @@ Anyone care to join?
 						</div>					
 						<pre>Anyone down for some BBQ and beer this weekend?
 						</pre>
+						<a href="#join-event1">Join</a>&nbsp;&nbsp;<a href="#invite-event1">Invite</a>&nbsp;&nbsp;
 						<span class="timestamp">Posted on 11:30 PM 7/30/2013</span>
 						<br/><br/>
+						<!-- new comment to be added -->
+						<ul class="breadcrumb racker-post">
+							<li>
+								<div class="row">
+									<div class="span1">
+										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
+									</div>
+									<div class="span4">
+										<textarea class="new-post" id="post2" name="post2"></textarea>
+										<div style="margin-top: 5px;">
+											<center>
+											<a class="btn danger">Comment</a>
+											</center>
+										</div>
+									</div>
+								</div>							
+							</li>
+						</ul>
+						<!-- new comment to be added -->
 					</div>
 				</div>
 			</div>
@@ -251,7 +439,7 @@ Anyone care to join?
 				<div class="span2">
 					<span style="margin-left: 15px;" class="glyphicon glyphicon-user rackerbook-profile-pic"></span><!-- 50 x 50 -->
 				</div>
-				<div class="span7">
+				<div class="span6">
 					<!-- POST FROM-> TO -->
 					<a href="#joe.racker" class="racker-profile-link">racker3</a>
 					&nbsp;
@@ -267,15 +455,34 @@ but since this is just a discussion, there is no need to "Join".
 						&nbsp;&nbsp;
 						<span class="timestamp">Posted on 11:30 PM 7/30/2013</span>
 						<br/><br/>
+						<!-- new comment to be added -->
+						<ul class="breadcrumb racker-post">
+							<li>
+								<div class="row"> 
+									<div class="span1">
+										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
+									</div>
+									<div class="span4">
+										<textarea class="new-post" id="post2" name="post2"></textarea>
+										<div style="margin-top: 5px;">
+											<center>
+											<a class="btn danger">Comment</a>
+											</center>
+										</div>
+									</div>
+								</div>							
+							</li>
+						</ul>
+						<!-- new comment to be added -->
 					</div>
 				</div>
 			</div>
 			<!-- post 3-->				
-		  </div><!-- end of rackerbook-column -->
+		  </div><!-- end of rackerbook-column -->		  
 		</div>
       </div><!-- CONTENT: THIS IS WHERE THE VIEWS FOR EACH PAGE WILL BE DIFFERENT-->
 
-     <footer>
+      <footer>
 		<center>
 			<img src="{% static "images/rackerpowered.png" %}" class="rackerpowered"/>
 		</center>

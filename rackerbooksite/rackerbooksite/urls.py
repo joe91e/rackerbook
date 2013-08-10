@@ -9,7 +9,13 @@ from socialapp.views import *
 urlpatterns = patterns('',
 	url(r'^$', landing),
 	url(r'^about/$', about),
-    #url(r'^static/$', static),
+	url(r'^profile/$', profile),
+	url(r'^loggedIn/$', loggedIn),
+	url(r'^createGroup/$', createGroup),
+	url(r'^editAccount/$', editAccount),
+	url(r'^group/$', group),
+	url(r'^signup/$', signup),
+	
     # Examples:
     # url(r'^$', 'rackerbooksite.views.home', name='home'),
     # url(r'^rackerbooksite/', include('rackerbooksite.foo.urls')),
