@@ -2,6 +2,7 @@
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
+import models
 
 def landing(request):
     t = get_template('index.html')
@@ -42,4 +43,6 @@ def profile(request):
 	t = get_template('profile.html')
 	html = t.render(Context({}))
 	return HttpResponse(html)
+	
+
 	
