@@ -2917,7 +2917,7 @@ ul.racker-post
 
 textarea.new-post
 {
-	resize: vertical;
+	resize: none;
 	width: 100%;
 }
 

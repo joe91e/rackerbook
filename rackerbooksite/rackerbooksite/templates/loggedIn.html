@@ -179,7 +179,7 @@
 				</div>
 				<div class="span6">
 					<!-- POST FROM-> TO -->
-					<a href="#joe.racker" class="racker-profile-link">Joe Racker</a>
+					<a href="#joe.racker" class="racker-profile-link">{{ firstName }} {{lastName}} {{ Email }} {{ Password }}</a>
 					&nbsp;
 					<span class="glyphicon glyphicon-play"></span>
 					&nbsp;
@@ -256,7 +256,7 @@ Anyone care to join?
 										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
 									</div>
 									<div class="span4">
-										<textarea class="new-post" id="post1" name="post1"></textarea>
+										<textarea class="new-post" id="post1" name="post1" onkeyup="textareaResize(this);"></textarea>
 										<div style="margin-top: 5px;">
 											<center>
 											<a class="btn danger">Comment</a>
@@ -361,7 +361,7 @@ Anyone care to join?
 										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
 									</div>
 									<div class="span4">
-										<textarea class="new-post" id="post1" name="post1"></textarea>
+										<textarea class="new-post" id="post1" name="post1" onkeyup="textareaResize(this);"></textarea>
 										<div style="margin-top: 5px;">
 											<center>
 											<a class="btn danger">Comment</a>
@@ -418,7 +418,7 @@ Anyone care to join?
 										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
 									</div>
 									<div class="span4">
-										<textarea class="new-post" id="post2" name="post2"></textarea>
+										<textarea class="new-post" id="post2" name="post2" onkeyup="textareaResize(this);"></textarea>
 										<div style="margin-top: 5px;">
 											<center>
 											<a class="btn danger">Comment</a>
@@ -464,7 +464,7 @@ but since this is just a discussion, there is no need to "Join".
 										<span class="glyphicon glyphicon-user rackerbook-profile-pic-small"></span>
 									</div>
 									<div class="span4">
-										<textarea class="new-post" id="post2" name="post2"></textarea>
+										<textarea class="new-post" id="post2" name="post2" onkeyup="textareaResize(this);"></textarea>
 										<div style="margin-top: 5px;">
 											<center>
 											<a class="btn danger">Comment</a>
@@ -502,6 +502,12 @@ $(document).ready(function(){
 		$(this).twipsy({ placement: "below"});
 	})	
 })
+
+function textareaResize(textarea)
+{
+    textarea.style.height = '24px';
+    textarea.style.height = textarea.scrollHeight + 12 + 'px';
+}
 
 function setColumnHeights()
 {
