@@ -78,9 +78,9 @@
 				</div>
 			</li>
           </ul>
-          <form id="loginForm" action="http://192.237.162.69/loggedIn" method="GET" class="pull-right">{% csrf_token %}
-            <input class="input-small" name="Email" type="text" placeholder="Email">
-            <input class="input-small" name="Password" type="password" placeholder="Password">
+          <form id="loginForm" action="/loggedIn/" method="POST" class="pull-right">{% csrf_token %}
+            <input class="input-small" id="loginEmail" name="Email" type="text" placeholder="Email">
+            <input class="input-small" id="loginPassword" name="Password" type="password" placeholder="Password">
             <a class="btn inverse" onclick="$(this).parent().submit();">Sign in</a>
 			<a class="btn" href="http://192.237.162.69/signup" style="color: #000;">Sign Up</a>
           </form>
@@ -263,6 +263,19 @@ $(document).ready(function(){
     $('#loginForm input').keydown(function(e){
         if(e.keyCode == 13){
             $('#loginForm').submit();
+        }
+    })
+    
+    $('#loginForm').submit(function(e){
+        
+        var email = $('#loginForm').find('#loginEmail').val().trim();
+        var password = $('#loginForm').find('#loginPassword').val().trim();
+        if(email.length > 0 && password.length > 0)
+        {}
+        else
+        {
+            e.preventDefault();
+            alert("Please enter email and password to login!");
         }
     })
 })
