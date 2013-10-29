@@ -3,6 +3,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.template import RequestContext
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.template.defaulttags import csrf_token
@@ -32,10 +33,9 @@ def landing(request):
         
     landingInfo = {'all_activity_groups' : activity_groups, 
                              'all_sports_groups': sports_groups, 'discussionThreads': discussionThreads, 'event_user_dict': event_user_dict,
-                             'csrf_token': csrf_token}
+                             }
     landingInfo.update(csrf(request))                             
-    html = t.render(Context(landingInfo),
-                            )
+    html = t.render(Context(landingInfo))
     return HttpResponse(html)
 	
 def about(request):
@@ -47,6 +47,13 @@ def createGroup(request):
 	t = get_template('createGroup.html')
 	html = t.render(Context({}))
 	return HttpResponse(html)
+    
+def loginFail(request):
+    t = get_template('loginFail.html')
+    c = {}
+    c.update(csrf(request))                             
+    html = t.render(Context(c)) 
+    return HttpResponse(html)
     
 def loggedIn(request):
     if request.method != 'POST':
@@ -65,8 +72,10 @@ def loggedIn(request):
             t = get_template('loggedIn.html')
             html = t.render(Context(loginInfo))
             return HttpResponse(html)
-    except user.DoesNotExist:
-        return HttpResponse("Your email and password didn't match")
+        else:
+            return HttpResponseRedirect('/loginFail/')
+    except:
+        return HttpResponse("Your email and password didn't match")       
 
 def editAccount(request):
 	t = get_template('editAccount.html')
@@ -79,9 +88,57 @@ def group(request):
 	return HttpResponse(html)
 
 def signup(request):
-	t = get_template('signup.html')
-	html = t.render(Context({}))
-	return HttpResponse(html)	
+    locations = Locations.objects.all()
+    t = get_template('signup.html')
+    ctx = {"locations": locations}
+    ctx.update(csrf(request))
+    html = t.render(Context(ctx))
+    return HttpResponse(html)
+  
+def createUser(request):
+    if request.method != 'POST':
+        raise Http404('Only POSTs are allowed')
+    
+    try:
+        firstNameVal = request.POST['firstName']
+        lastNameVal = request.POST['lastName']
+        emailVal = request.POST['Email']
+        location_idVal = request.POST['location']
+        genderVal = request.POST['gender']
+        g = 'M'
+        if genderVal == 'male':
+            g = 'M'
+        else:
+            g = 'F'
+        locationObj = Locations.objects.get(location_id=location_idVal)       
+        newUser = Users(
+            firstName=firstNameVal, 
+            lastName=lastNameVal,
+            password='pistachio',
+            email=emailVal,
+            gender=g,
+            location=locationObj,
+            user_desc=''
+        )
+        newUser.save()
+        
+        if newUser.user_id:
+            return HttpResponseRedirect('/registered/')
+        else:
+            t = get_template('signup.html')
+            ctx = {"locations": locations, "error_msg": "Sign up was unsuccssful!"}
+            ctx.update(csrf(request))
+            html = t.render(Context(ctx))            
+            return HttpResponse(html)
+    except:
+        return HttpResponse("Sign up unsuccessful!")      
+
+def registered(request):
+    t = get_template('registered.html')
+    ctx = {}
+    ctx.update(csrf(request))
+    html = t.render(Context(ctx))
+    return HttpResponse(html)
 	
 def profile(request):
 	t = get_template('profile.html')

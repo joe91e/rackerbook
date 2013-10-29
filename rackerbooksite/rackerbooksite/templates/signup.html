@@ -55,7 +55,7 @@
       <div class="fill">
         <div class="container">
 		  <a class="brand" style="padding: 0px; margin-right: 25px; margin-left: -5px;">
-			<img src="images/rackspace-logo.png" />
+			<img src="{%static "images/rackspace-logo.png" %}" />
 		  </a>
           <a class="brand" href="http://192.237.162.69/">rackerbook</a>
           <ul class="nav">
@@ -120,21 +120,23 @@
 				<div class="row">
 					<div class="span1">
 					</div>
-					<div class="span10">				
-					<table id="signUpForm" class="signUpForm bordered-table">
+					<div class="span10">	
+                    <form id="signUpForm" action="/createUser/" method="POST">{% csrf_token %}        
+					<table id="signUpTable" class="signUpForm bordered-table">
 					<thead>
+                        {{ email }}{{ gender }}{{location_idVal}}
 						<th colspan="2"><h3>Sign Up</h3></th>
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" style="width: 96%;" placeholder="First Name" /></td>
-							<td><input type="text" style="width: 96%;" placeholder="Last Name" /></td>
+							<td><input type="text" style="width: 96%;" id="firstName" name="firstName" placeholder="First Name" /></td>
+							<td><input type="text" style="width: 96%;" id="lastName" name="lastName" placeholder="Last Name" /></td>
 						</tr>
 						<tr>
-							<td colspan=2><input type="text" placeholder="Your Rackspace Email" style="width: 98%;" /></td>
+							<td colspan=2><input type="text" id="Email" name="Email" placeholder="Your Rackspace Email" style="width: 98%;" /></td>
 						</tr>
 						<tr>
-							<td colspan=2><input type="text" placeholder="Re-enter Email" style="width: 98%;" /></td>
+							<td colspan=2><input type="text" id="Email2" name="Email2" placeholder="Re-enter Email" style="width: 98%;" /></td>
 						</tr>
 						<!--
 						<tr>
@@ -148,7 +150,11 @@
 								<div class="input-prepend">
 								<span class="add-on">Location</span>
 								&nbsp;
-								<select style="height: 24px;">
+								<select id="location" style="height: 24px;">
+                                    {% for location in locations %}
+                                        <option value="{{ location.location_id }}">{{ location.location_name }}</option>
+                                    {% endfor %}
+                                    <!--
 									<option value="Austin, TX">Austin, TX</option>
 									<option value="San Antonio, TX">San Antonio, TX</option>
 									<option value="Hayes, UK">Hayes, UK</option>
@@ -156,18 +162,27 @@
 									<option value="Blacksburg, VA">Blacksburg, VA</option>
 									<option value="Sydney, AUS">Sydney, AUS</option>
 									<option value="Hong Kong">Hong Kong</option>
+                                    -->
 								</select>
+                                <input type="hidden" id="locationVal" name="location" />
 								</div>
 							</td>
 						</tr>						
 						<tr>
-							<td colspan=2><h3>&nbsp;<input type="radio" />&nbsp;Male&nbsp;&nbsp;&nbsp;<input type="radio" />&nbsp;Female</h3></td>
+							<td colspan=2><h3>&nbsp;<input type="radio" class="gender" id="male" />
+                            &nbsp;Male&nbsp;&nbsp;&nbsp;<input type="radio" class="gender" id="female" />&nbsp;Female</h3>
+                            <input type="hidden" name="gender" id="genderValue">
+                            </td>
 						</tr>
 						<tr id="signUpRow">
-							<td colspan=2 style="text-align: center;"><a class="btn danger">Sign Up</a></td>
+							<td colspan=2 style="text-align: center;"><a class="btn danger" onclick="signUp();">Sign Up</a></td>
 						</tr>
 					<tbody>
 					</table>
+                    <div>
+                        <h3 style="color: red;"></h3>
+                    </div>
+                    </form>
 					</div>
 				</div>			
 			</div>
@@ -182,6 +197,8 @@
     </div> <!-- /container --> 
   </body>
  <script language="javascript">
+ var radioSelected = false;
+ var curRadio = '';
 $(document).ready(function(){
 	setColumnHeights();
 	$('.racker-dropdown').each(function(){
@@ -190,6 +207,22 @@ $(document).ready(function(){
 	$('.twipsy-below').each(function(){
 		$(this).twipsy({ placement: "below"});
 	})	
+    
+    $('input.gender').each(function(){
+        $(this).removeAttr('checked');
+        $(this).click(function(){
+            radioSelected = true;
+            $input = $(this);
+            $('input.gender').each(function(){
+                if($input.attr('id') != $(this).attr('id'))
+                    $(this).removeAttr('checked');
+            })
+            $input.attr('checked', 'checked');
+            curRadio = $input.attr('id');
+            $('#genderValue').val(curRadio);
+        })
+    })
+    
 })
 
 function setColumnHeights()
@@ -206,6 +239,53 @@ function setColumnHeights()
 	$('div.rackerbook-column').each(function(){
 		$(this).css('height', maxHeight);
 	})
+    
+    $('#locationVal').val($('#location').val());
+    $('#location').change(function(){
+        $('#locationVal').val($('#location').val());
+    })
+}
+
+function signUp()
+{
+    var firstName = $('#firstName').val().trim();
+    var lastName = $('#lastName').val().trim();
+    var email1 = $('#Email').val().trim();
+    var email2 = $('#Email2').val().trim();
+    var location = $('#location').val();
+    var gender = $('#genderValue').val();
+    
+    var proceed = true;
+    if(firstName.length <= 0 || lastName.length <= 0)
+    {
+        proceed = false;
+        alert("Please enter your first and last name!");
+    }
+    
+    if(email1.length <= 0 || email2.length <= 0)
+    {
+        proceed = false;
+        alet("Please enter your email address!");
+    }
+    else
+    {
+        if(email1 != email2)
+        {
+            proceed = false;
+            alert("Email addresses do not match! Please re-enter your email addresses!");
+        }
+    }
+    
+    if(gender.length <= 0)
+    {
+        proceed = false;
+        alert("Please select the gender!");
+    }
+    
+    if(proceed)
+    {
+        $('#signUpForm').submit();
+    }
 }
 </script> 
 </html>

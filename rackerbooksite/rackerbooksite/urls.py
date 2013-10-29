@@ -11,10 +11,13 @@ urlpatterns = patterns('',
 	url(r'^about/$', about),
 	url(r'^profile/$', profile),
 	url(r'^loggedIn/$', loggedIn),
+    url(r'^loginFail/$', loginFail),
 	url(r'^createGroup/$', createGroup),
 	url(r'^editAccount/$', editAccount),
 	url(r'^group/$', group),
 	url(r'^signup/$', signup),
+    url(r'^createUser/$', createUser),
+    url(r'^registered/$', registered),
 	
     # Examples:
     # url(r'^$', 'rackerbooksite.views.home', name='home'),
